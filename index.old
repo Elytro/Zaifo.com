@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在否网,找个懂你的人,树洞匿名倾诉平台</title>
+    <meta name="keywords" content="大树洞,树洞网,树洞,秘密网,在否网"/>
+    <meta name="description" content="在否网(www.zaifo.com)是一款匿名倾诉平台,树洞聊天,匿名聊天,解压与排解孤独。在树洞网,可以放心诉心事,那些现实中不曾发出的声音,请把它留在这里,我们为您寄存秘密。安全、私密、永恒的数字空间,树洞，树洞网，秘密网，大树洞，在这里，我们为您寄存秘密..."/>
+    <link rel="stylesheet" href="styles.css?1">
+    <link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tree"></i>
+                    <h1>树洞</h1>
+                </div>
+                <p class="tagline">那些现实中不曾发出的声音，请把它留在这里...</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Anonymous Message Form -->
+            <section class="message-section">
+                <div class="message-form-container">
+                    <h2><i class="fas fa-feather-alt"></i> 发表你的心声</h2>
+                    <form id="messageForm" class="message-form">
+                        <div class="form-group">
+                            <textarea 
+                                id="messageText" 
+                                placeholder="在这里说出你想说的话，没有人知道你是谁..."
+                                maxlength="500"
+                                required
+                            ></textarea>
+                            <div class="char-count">
+                                <span id="charCount">0</span>/500
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select id="category" class="category-select">
+                                <option value="">选择分类（可选）</option>
+                                <option value="confession">表白</option>
+                                <option value="complaint">吐槽</option>
+                                <option value="secret">秘密</option>
+                                <option value="dream">梦想</option>
+                                <option value="regret">遗憾</option>
+                                <option value="gratitude">感谢</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            匿名发送
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Messages Display -->
+            <section class="messages-section">
+                <div class="messages-header">
+                    <h2><i class="fas fa-comments"></i> 心声回响</h2>
+                    <div class="filter-controls">
+                        <select id="filterCategory" class="filter-select">
+                            <option value="all">全部</option>
+                            <option value="confession">表白</option>
+                            <option value="complaint">吐槽</option>
+                            <option value="secret">秘密</option>
+                            <option value="dream">梦想</option>
+                            <option value="regret">遗憾</option>
+                            <option value="gratitude">感谢</option>
+                        </select>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="搜索心声...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="messagesContainer" class="messages-container">
+                    <!-- Messages will be dynamically loaded here -->
+                    <div class="message-card sample">
+                        <div class="message-header">
+                            <span class="message-time">刚刚</span>
+                            <span class="message-category secret">秘密</span>
+                        </div>
+                        <div class="message-content">
+                            这是我第一次来树洞，希望能在这里找到倾诉的勇气...
+                        </div>
+                        <div class="message-actions">
+                            <button class="action-btn like-btn">
+                                <i class="fas fa-heart"></i>
+                                <span class="count">42</span>
+                            </button>
+                            <button class="action-btn comment-btn">
+                                <i class="fas fa-comment"></i>
+                                <span class="count">8</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="load-more-container">
+                    <button id="loadMoreBtn" class="load-more-btn">
+                        <i class="fas fa-chevron-down"></i>
+                        加载更多
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-bottom">
+                <div class="icp-info">
+                    <p><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">鲁ICP备2025144109号-14</a> · 鲁公网安备42011102005424号</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>发送成功！</h3>
+            <p>你的心声已经安全地保存在树洞中</p>
+            <button class="modal-close-btn">确定</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

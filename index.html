@@ -1,1 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在否网,找个懂你的人,树洞匿名倾诉平台</title>
+    <meta name="keywords" content="大树洞,树洞网,树洞,秘密网,在否网"/>
+    <meta name="description" content="在否网(www.zaifo.com)是一款匿名倾诉平台,树洞聊天,匿名聊天,解压与排解孤独。在树洞网,可以放心诉心事,那些现实中不曾发出的声音,请把它留在这里,我们为您寄存秘密。安全、私密、永恒的数字空间,树洞，树洞网，秘密网，大树洞，在这里，我们为您寄存秘密..."/>
+    <link href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Ma+Shan+Zheng&display=swap');
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'Microsoft YaHei', serif;
+            background: linear-gradient(180deg, #1a0b2e 0%, #2d1b4e 30%, #4a1942 70%, #0d0d1a 100%);
+            min-height: 100vh;
+            color: #e8d5ff;
+            overflow-x: hidden;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Starry Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Sakura Petals */
+        .sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .sakura {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg) translateX(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            width: 100%;
+            min-height: calc(100vh - 120px);
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* App Card Section */
+        .app-section {
+            width: 100%;
+        }
+
+        .app-card {
+            background: linear-gradient(135deg,
+                rgba(45, 27, 78, 0.8) 0%,
+                rgba(74, 25, 66, 0.7) 50%,
+                rgba(13, 13, 26, 0.9) 100%);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            padding: 56px 50px 23px;
+            max-width: 700px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(255, 107, 157, 0.2);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg,
+                transparent,
+                rgba(255, 107, 157, 0.3),
+                transparent,
+                rgba(138, 43, 226, 0.3),
+                transparent);
+            background-size: 400% 400%;
+            border-radius: 40px;
+            z-index: -1;
+            animation: gradient 6s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            box-shadow:
+                0 0 40px rgba(255, 107, 157, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 107, 157, 0.5);
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 40px rgba(255, 107, 157, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 60px rgba(255, 107, 157, 0.8);
+            }
+        }
+
+        .app-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffb6c1 0%, #da70d6 50%, #ff69b4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            font-family: 'Ma Shan Zheng', cursive;
+        }
+
+        .app-tagline {
+            font-size: 20px;
+            color: rgba(255, 182, 193, 0.9);
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .app-description {
+            text-align: center;
+            font-size: 17px;
+            line-height: 2.2;
+            color: rgba(232, 213, 255, 0.85);
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 107, 157, 0.6),
+                rgba(138, 43, 226, 0.6),
+                transparent);
+            margin: 35px 0;
+        }
+
+        /* Download Buttons */
+        .download-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 107, 157, 0.4);
+            cursor: pointer;
+            background: linear-gradient(135deg,
+                rgba(255, 107, 157, 0.15) 0%,
+                rgba(138, 43, 226, 0.15) 100%);
+            backdrop-filter: blur(10px);
+            color: #ffb6c1;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-download:hover::before {
+            left: 100%;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow:
+                0 20px 40px rgba(255, 107, 157, 0.4),
+                0 0 60px rgba(138, 43, 226, 0.3);
+            border-color: rgba(255, 107, 157, 0.8);
+        }
+
+        .btn-download svg {
+            width: 26px;
+            height: 26px;
+            margin-right: 12px;
+            fill: #ffb6c1;
+            transition: fill 0.3s;
+        }
+
+        .btn-download:hover svg {
+            fill: #fff;
+        }
+
+        .btn-download:hover {
+            color: #fff;
+        }
+
+        .btn-ios:hover {
+            background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.9) 0%,
+                rgba(118, 75, 162, 0.9) 100%);
+            border-color: transparent;
+        }
+
+        .btn-android:hover {
+            background: linear-gradient(135deg,
+                rgba(255, 107, 157, 0.9) 0%,
+                rgba(196, 69, 105, 0.9) 100%);
+            border-color: transparent;
+        }
+
+        .btn-miniprogram:hover {
+            background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.9) 0%,
+                rgba(118, 75, 162, 0.9) 100%);
+            border-color: transparent;
+        }
+
+
+
+        /* Download Tip */
+        .download-tip {
+            text-align: center;
+            margin-top: 20px;
+            padding: 5px 0;
+        }
+
+        .tip-text {
+            font-size: 13px;
+            color: rgba(255, 182, 193, 0.6);
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            text-align: center;
+            margin-top: 23px;
+            padding-top: 23px;
+            border-top: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .quote {
+            font-size: 16px;
+            color: rgba(255, 182, 193, 0.7);
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .quote::before,
+        .quote::after {
+            content: '"';
+            font-size: 24px;
+            color: rgba(255, 107, 157, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 18px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            border-top: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 12px;
+            color: rgba(255, 182, 193, 0.7);
+            line-height: 1.6;
+            letter-spacing: 1px;
+        }
+
+        .footer a {
+            color: rgba(255, 182, 193, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer a:hover {
+            color: #ffb6c1;
+            border-bottom-color: rgba(255, 182, 193, 0.5);
+        }
+
+        .footer-copyright {
+            margin-bottom: 5px;
+        }
+
+        .footer-beian {
+            margin-top: 5px;
+        }
+
+        .separator {
+            color: rgba(255, 182, 193, 0.5);
+        }
+
+        /* QR Code Modal */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg,
+                rgba(45, 27, 78, 0.95) 0%,
+                rgba(74, 25, 66, 0.95) 50%,
+                rgba(13, 13, 26, 0.98) 100%);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(255, 107, 157, 0.2);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, #ffb6c1 0%, #da70d6 50%, #ff69b4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Ma Shan Zheng', cursive;
+        }
+
+        .modal-body {
+            text-align: center;
+        }
+
+        .qr-code-container {
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        .qr-description {
+            font-size: 14px;
+            color: rgba(255, 182, 193, 0.9);
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .app-card {
+                padding: 40px 30px;
+            }
+
+            .app-title {
+                font-size: 36px;
+                letter-spacing: 5px;
+            }
+
+            .app-tagline {
+                font-size: 18px;
+            }
+
+            .quote {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 15px;
+            }
+
+            .app-card {
+                padding: 35px 20px;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .logo::before {
+                font-size: 50px;
+            }
+
+            .btn-download {
+                padding: 15px 20px;
+                font-size: 15px;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars Background -->
+    <div class="stars" id="starsContainer"></div>
+
+    <!-- Sakura Petals -->
+    <div class="sakura-container" id="sakuraContainer"></div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-wrapper">
+            <!-- App Card Section -->
+            <div class="app-section">
+                <div class="app-card">
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="icon.png" alt="在否网Logo">
+                        </div>
+                        <h1 class="app-title"> 在否网 </h1>
+                        <p class="app-tagline">此刻，遇见另一个自己</p>
+                    </div>
+
+                    <p class="app-description">
+                        匿名树洞，温暖共鸣，不问来路<br>
+                        在这个喧嚣的世界里,寻一处可以安放心灵的栖息地
+                        
+                    </p>
+
+                    <div class="divider"></div>
+
+                    <div class="download-buttons">
+                        <a href="#" class="btn-download btn-miniprogram" onclick="showQRCode('miniprogram')">
+                            微 信 小 程 序
+                        </a>
+                        <a href="#" class="btn-download btn-android" onclick="showQRCode('official')">
+                            微 信 公 众 号
+                        </a>
+                    </div>
+
+                    <div class="download-tip">
+                        <p class="tip-text">通过公众号发布{匿名}留言, 小程序可以回复{Ta}的秘密。</p>
+                    </div>
+
+                    <div class="quote-section">
+                        <p class="quote">在这个世界上，总有人愿意倾听你的故事</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-copyright">
+            © 2026 <a href="https://www.zaifo.com/">在否网</a> <a href="https://www.vblly.com/">微薄利技术有限公司</a> 版权所有
+        </p>
+        <p class="footer-beian">
+            <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2025144109号-14</a>
+            <span class="separator"> | </span>
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">鲁公网安备42011102005424号</a>
+        </p>
+    </footer>
+    <!-- QR Code Modal -->
+    <div class="qr-modal" id="qrModal" onclick="closeQRCode(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title" id="qrTitle">二维码</h3>
+            </div>
+            <div class="modal-body">
+                <div class="qr-code-container">
+                    <img class="qr-code" id="qrImage" src="" alt="二维码">
+                </div>
+                <p class="qr-description" id="qrDescription">扫描二维码</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Create Stars
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            const starCount = 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = (Math.random() * 3) + 's';
+                star.style.width = (Math.random() * 2 + 1) + 'px';
+                star.style.height = star.style.width;
+                container.appendChild(star);
+            }
+        }
+
+        // Create Sakura Petals
+        function createSakura() {
+            const container = document.getElementById('sakuraContainer');
+            const sakuraCount = 40;
+
+            for (let i = 0; i < sakuraCount; i++) {
+                const sakura = document.createElement('div');
+                sakura.className = 'sakura';
+                sakura.style.left = Math.random() * 100 + '%';
+                sakura.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                sakura.style.animationDelay = (Math.random() * 10) + 's';
+                sakura.style.width = (Math.random() * 8 + 8) + 'px';
+                sakura.style.height = sakura.style.width;
+                container.appendChild(sakura);
+            }
+        }
+
+        // QR Code Data
+        const qrData = {
+            miniprogram: {
+                title: '微信小程序',
+                description: '微信扫一扫，进入小程序',
+                qrCode: 'https://via.placeholder.com/300x300/FF6B9D/FFFFFF?text=小程序二维码'
+            },
+            official: {
+                title: '微信公众号',
+                description: '微信扫一扫，关注公众号',
+                qrCode: 'https://via.placeholder.com/300x300/8A2BE2/FFFFFF?text=公众号二维码'
+            }
+        };
+
+        // Show QR Code Modal
+        function showQRCode(type) {
+            const modal = document.getElementById('qrModal');
+            const title = document.getElementById('qrTitle');
+            const description = document.getElementById('qrDescription');
+            const image = document.getElementById('qrImage');
+
+            title.textContent = qrData[type].title;
+            description.textContent = qrData[type].description;
+            image.src = qrData[type].qrCode;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close QR Code Modal
+        function closeQRCode(event) {
+            const modal = document.getElementById('qrModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeQRCode();
+            }
+        });
+
+        // Initialize
+        createStars();
+        createSakura();
+    </script>
+</body>
+</html>
